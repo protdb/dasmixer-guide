@@ -1,0 +1,1394 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../user/advanced/ptm_configuration/">
+      
+      
+        <link rel="next" href="../lfq/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Concepts - DASMixer guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#core-concepts-and-formulas" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="DASMixer guide" class="md-header__button md-logo" aria-label="DASMixer guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DASMixer guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Concepts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="DASMixer guide" class="md-nav__button md-logo" aria-label="DASMixer guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DASMixer guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user/project_sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create project and import data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user/peptides_tab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work with peptides and identifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user/advanced/MaxQuant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MaxQuant project import
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user/advanced/ptm_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PTM Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts and algorithms
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts and algorithms
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Specre
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identification-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identification properties
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identification properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#intensity-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intensity Coverage, %
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ppm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peaks-covered-top-peaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Peaks covered, top peaks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#longest-consequtive-run-ratio-lcrr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longest Consequtive Run Ratio (LCRR)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unconfirmed-ptms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unconfirmed PTMs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spectre-and-identification-correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spectre and identification correction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preferred-identifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preferred identifications
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protein-matching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protein matching
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Protein matching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#protein-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protein identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#de-novo-correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        De Novo correction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amino-acid-substitutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amino Acid substitutions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unique-evidences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unique evidences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protein-identifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protein identifications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Protein identifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#label-free-quantification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Label-free quantification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lfq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LFQ Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Specre
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identification-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identification properties
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identification properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#intensity-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intensity Coverage, %
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ppm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PPM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peaks-covered-top-peaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Peaks covered, top peaks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#longest-consequtive-run-ratio-lcrr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longest Consequtive Run Ratio (LCRR)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unconfirmed-ptms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unconfirmed PTMs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spectre-and-identification-correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spectre and identification correction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preferred-identifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preferred identifications
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protein-matching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protein matching
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Protein matching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#protein-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protein identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#de-novo-correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        De Novo correction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amino-acid-substitutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amino Acid substitutions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unique-evidences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unique evidences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protein-identifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protein identifications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Protein identifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#label-free-quantification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Label-free quantification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="core-concepts-and-formulas">Core concepts and formulas</h1>
+<p>This note is important to avoid misunderstandings in terms used in DASMixer as they may not match any other terminology used by other proteomics software.</p>
+<h2 id="tool">Tool</h2>
+<p>An instrument used to identify peptide sequences from spectre. Can be created by user and
+represents some source of Identifications (see below). Uses parser (or "importer") to parse input data format and
+transform it to internal representation of identification</p>
+<h2 id="sample">Sample</h2>
+<p>Proteomic sample of any source. Samples are created authomatically based on input spectra files. However single sample can contain more than one spectre file.</p>
+<p>Features from two spectre files in the same Sample are directly combined, so it is not recommended to upload technical/biological repeats as different spectre files of the same sample. Consider using it for cases of fractioning or split processing.</p>
+<h2 id="specre">Specre</h2>
+<p>Spectre for DASMixer is a single set of Mz and intensity values for a single precursor. Identifications must be matched to the precursor spectre to be calculatable and stored in the DASMixer project.</p>
+<h2 id="identification">Identification</h2>
+<p>Identification (widely known as PSM, peptide spectra match) is a peptide sequence matched to the Spectre using search engine and imported in DASMixer.</p>
+<p>Identification is basically described with:</p>
+<ul>
+<li>Tool used to get this identification</li>
+<li>Peptide sequence in two forms:</li>
+<li><code>sequence</code> with described PTMs in <a href="https://github.com/HUPO-PSI/ProForma">HuPO ProForma notation</a> with priority to named PTM form like <code>[Phospho]</code> or <code>[Deamidated]</code> instead of unreadable <code>[UNIMOD:7]</code> </li>
+<li><code>canonical sequence</code> with only canonical amino acids</li>
+<li>search engine score</li>
+<li>physical PSM characteristics</li>
+</ul>
+<h2 id="identification-properties">Identification properties</h2>
+<p>DASMixer does not implement False Discovery statistical protocol. Instead, it calculates peptide fragmentation and analyze how it is mapped to the spectre.</p>
+<p>Identifications mapping process performed with "Calculate Ion coverage" action. However, Ion Coverage is not the only one parameter calculating in this process.</p>
+<p>These criteria follows:</p>
+<h3 id="intensity-coverage">Intensity Coverage, %</h3>
+<p>Percent of total intensity of peacs in spectre to peaks associated with fragments.</p>
+<div class="arithmatex">\[Ic = \frac{\sum_{mz=0}^n i_{frag}}{\sum_{mz=0}^n i_{all}}*100\]</div>
+<h3 id="ppm">PPM</h3>
+<p>Precursor error in parts per million, PPM error. Difference between precursor mass from spectre and theoretical mass of the identified sequence regarding PTMs and charge</p>
+<div class="arithmatex">\[PPM = \frac{Pepmass - MZ_{theor}}{MZ_{theor}} * 1e6\]</div>
+<p>Where <span class="arithmatex">\(Pepmass\)</span> is precursor mass reported along with spectra and <span class="arithmatex">\(MZ_{theor}\)</span> calculated as follows:</p>
+<div class="arithmatex">\[MZ_{theor} = \frac{Mass_n + Charge * Proton}{Charge}\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(Mass_n\)</span> is neutral monoisotopic mass of sequence with PTMs</li>
+<li><span class="arithmatex">\(Charge\)</span> is precursor charge</li>
+<li><span class="arithmatex">\(Proton\)</span> is a single proton mass constant (<code>1.007276</code>)</li>
+</ul>
+<h3 id="peaks-covered-top-peaks">Peaks covered, top peaks</h3>
+<p>Number of peaks matched to ions. peaks covered is a simple metrics of how many fragments get matched to experimental spectra. Top peaks calculated as number of top-10 experimental spectra peaks matched to the fragments</p>
+<h3 id="quality">Quality</h3>
+<p>Identification quality is an index of ions matched to the spectra. Based on:</p>
+<blockquote>
+<p>Bern, M., Goldberg, D., McDonald, W. H., &amp; Yates, J. R. (2004).
+<em>Automatic Quality Assessment of Peptide Tandem Mass Spectra.</em>
+<strong>Bioinformatics</strong>, 20(suppl_1), i49–i54.
+https://doi.org/10.1093/bioinformatics/bth947</p>
+</blockquote>
+<div class="arithmatex">\[Q = \frac{1}{N_{types}} * \frac{N_{match}}{L - 1}\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(N_{types}\)</span> is number of ion types selected (2 if only <em>b</em> and <em>y</em> ions selected; up to 6 for a, b, c, x, y, and z)</li>
+<li><span class="arithmatex">\(N_{match}\)</span> is number of unique ion matched. This value intentionnaly eexclude duplicates of fragment variations by charges and losses: y6, y6++ and y6-NH3 will count as single found fragment</li>
+<li><span class="arithmatex">\(L\)</span> is length of peptide sequence.</li>
+</ul>
+<h3 id="longest-consequtive-run-ratio-lcrr">Longest Consequtive Run Ratio (LCRR)</h3>
+<p>An indicator of longest sequence of fragment ions found in the spectre and divided by sequence lenght. Can be described better by example:</p>
+<p>Let's say, for a peptide consists of 10 amino acids, there are following fragments mapped to the experimental spectra:</p>
+<pre><code>y2, y3, y3++, y4-NH3, y6, y7, y9, b2, b4, b5, b7
+</code></pre>
+<p>LCRR value in this case will be equal to <code>0.3</code> as the longest conequtive run is of lenght 3 (<code>y2, y3, y4</code>) and peptide length is 10. y3 and y3++ considered as a single ion
+(like Quality calculation described above) and y5 is missing.</p>
+<h3 id="unconfirmed-ptms">Unconfirmed PTMs</h3>
+<blockquote>
+<p><strong>Note</strong>: described logic is subject of refinement in further versions</p>
+</blockquote>
+<p>Number of PTMs present in identification but not confirmed by fragmentation.</p>
+<p>The fragment of the spectre corresponds to a partial sequence of the whole precursor peptide. As sequence is partial, it is common when overall fine covered sequence has no ion with sequence including one or more PTMs.</p>
+<div class="arithmatex">\[Unconfirmed = PTM(peptide) - \max_{i}(PTM({fragment_i}))\]</div>
+<p>where <em>fragment</em> is fragment sequence, peptide is peptide sequence and PTM is function to calculate PTMs from ProForma record</p>
+<h2 id="spectre-and-identification-correction">Spectre and identification correction</h2>
+<p>There are common problems with spectre metadata and sequence annotation that DASMixer tries to fix when calculating ion coverage:</p>
+<ol>
+<li>wrong or absent precursor charge of the spectra</li>
+<li>precursor mass error based on isotope offset</li>
+<li>fixed PTMs considered by search engine but not reported in sequence</li>
+<li>unlocalized PTMs (especially common for PLGS)</li>
+</ol>
+<p>first two points can result in significant difference in theoretical and experimental precursor masses while 3rd and 4th affect fragment mapping.</p>
+<p>DASMixer will try to:
+- minimize precursor PPM error iterating over charges and, for charge resulting in minimum absolute PPM, shifting mass for isotope offset;
+- recombinate PTMs in sequence to reach reasonable PPM error without decreasing intensity coverage</p>
+<p>These steps are inkluded in pipeline by default yet can be easily omitted.</p>
+<h2 id="preferred-identifications">Preferred identifications</h2>
+<p>Preferred identification is one of the most important concepts of DASMixer workflow and at the same time requires some effort to be understood.</p>
+<p>It is obvious that not every identification can be trusted, especially if it is prodused by de novo search engine.
+Instead of calculating its own score or FDR value, DASMixer operates with set of criteria (described above) and user-defined thresholds for these criteria.
+Also while every identification is linked to the spectre, it is also important to not duplicate identifications used to estimate proteins abundance in sample.
+Preferred identification concept aimed to solve these two problems.</p>
+<p>Identification can be considered preferred only if all its indicators passes thresholds set by user.
+If two or more identification of a single spectre passed thresholds, only the best one can be selected as preferred.
+If identifications are identical, preferred flag is set to first tool in list
+(it is not important when we speak about protein identification, however these identifications counted in Tool match report as found by "Both" tools).</p>
+<p><strong>In short</strong>: preferred identification is an identification that passes treshold of physical criteria for the tool and is better in spectre explanation than other identifications for this spectra.</p>
+<p>Only preferred identifications are used to determine protein abundance. 
+But preferred identifications not matched to the proteins can be additional point of interest representing unknown proteoforms
+or elements of peptidome. However, we recommend to thoroughly review such findings.  </p>
+<h2 id="protein-matching">Protein matching</h2>
+<p>For database search engines all the imported identifications are peptides taken from known proteins in proteome, while de novo search tools often provide only sequence without mapping to the proteins.
+DASMixer provides the tool to search identification sequences in user-provided proteome (via .fasta file upload).
+Uploading proteome to DASMixer is also useful if you are working with DB search only as identification data does not provide full protein sequences required to calculate protein coverage and theoretical peptides for LFQ.</p>
+<p>Protein matching is performed using npysearch library:</p>
+<blockquote>
+<p>Schmid S, Jeevannavar A, Julian TR, Tamminen M (2023) 
+Portable BLAST-like algorithm library and its implementations 
+for command line, Python, and R. PLoS ONE 18(11): e0289693. 
+https://doi.org/10.1371/journal.pone.0289693</p>
+</blockquote>
+<p>Protein matching process is mandatory in pipeline, however for database search results it can just load proteins provided with identifications to project. This process is quite more important for de novo and open search scenarios.</p>
+<h3 id="protein-identity">Protein identity</h3>
+<p>Identity is a lower limit of match between identification sequence and most similar fragment in protein database. Identity can be in 0...1 interval where 1.0 is 100% match and 0.0 is just any aminoacid sequence.</p>
+<h3 id="de-novo-correction">De Novo correction</h3>
+<p>DASMixer offers a de novo correction scenario to fix some portion of de novo sequencing errors. In this case, you should lower the <em>protein identity</em> setting and enable <em>de novo correction</em> mode for tool.</p>
+<p>In that case, DASMixer searches peptides in protein database with difference until given identity. For de novo correction it is recommended to use identity in 0.7-0.8 interval.</p>
+<p>The closest sequence found in protein database is called <code>matched sequence</code>. If identifications canonical sequence and matched sequence are not identical, DASMixer validates matched sequence against the experimental spectra:
+- calculates PPM difference.
+- calculates ion coverage with application of source PTMs. If PTM sites differs between sequence and matched sequence, DASMixer tries to re-allocate PTMs the same way it does for Ion matching</p>
+<p>If ppm error and intensity coverage of matched sequence is not worse than the same indicators of original sequence, protein match is saved to the project.</p>
+<p>If source sequence does not fit to preferred criteria while matched sequence does, DASMixer can consider this identification as preferred.</p>
+<h3 id="amino-acid-substitutions">Amino Acid substitutions</h3>
+<p>DASMixer can analyze if de novo identification contains potential amino acid substitution (AA substitution). AA substitution search is based on the same calculations that de novo correction, but relies on differen outcome.</p>
+<p>AA substitution is suspected when: source sequence is fine enough to be considered preferred identification but protein match is not exact (identity &lt; 1.0) and matched sequence has no better indicators of ppm and intensity coverage.
+In other words, sequence contains AA substitution if it slightly differs from canonical protein sequence but offers better explanation of the experimental spectre. You can see the example below:</p>
+<p><img alt="Amino acid substitution example" src="../img/aa_substitution.png" /></p>
+<blockquote>
+<p>AA substitution ion coverage example. First: fragmentation plot for sequence fond using PowerNovo2. Second: plot for matched sequence with identity=0.92. 
+minor sequence changes results in loss of almost every y ion, significant PPM error increase and decrease of intensity coverage (iC)</p>
+</blockquote>
+<p><strong>Note:</strong> AA substitution search algorithm is experimental and can be subject of refinement in future versions of DASMixer.
+Correlation between de novo detected AA substitution and genetic mutations is not confirmed yet by proper publications.
+We recommend to thoroughly review AA substitution data presented by DASMixer before any conclusions are made.</p>
+<h3 id="unique-evidences">Unique evidences</h3>
+<p>If sequence is found in one and only one protein in database, it is considered as unique evidence of protein existence in sample.</p>
+<h2 id="protein-identifications">Protein identifications</h2>
+<p>Based on list of preferred identifications matched to proteins, DASMixer creates a list of proteins in sample. Default limits to add protein in list are:
+- two identifications minimum
+- at least single unique evidence</p>
+<p>These filters can be bypassed or strenghtened by user.</p>
+<h3 id="label-free-quantification">Label-free quantification</h3>
+<p>Label-free quantification (LFQ) is a set of approaches to estimate proteins proportion in complex mixture of the sample.
+DASMixer offers four different approaches to calculate LFQ and also two approaches to normalize these values by orthogonally calculated value. Methods described in details on <a href="../lfq/">Separate page</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../user/advanced/ptm_configuration/" class="md-footer__link md-footer__link--prev" aria-label="Previous: PTM Configuration">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                PTM Configuration
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lfq/" class="md-footer__link md-footer__link--next" aria-label="Next: LFQ Methods">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                LFQ Methods
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
